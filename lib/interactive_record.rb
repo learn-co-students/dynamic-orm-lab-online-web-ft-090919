@@ -10,18 +10,15 @@ class InteractiveRecord
     end
 
     def self.column_names
-        DB[:conn].results_as_hash = true
-        #Turns the results into an array of hashes instead of an array of arrays
         sql = "pragma table_info('#{table_name}')"
         # Sets 'sql' to an array of hashes containing the table's info by column (NOT row)
         table_info = DB[:conn].execute(sql)
         # Sets the variable 'table_info' to the query sent to the database
-        # Sets 'column_names' to an empty array for collection
         table_info.collect do |column|
             column["name"]
         end.compact
         # Iterates over the array of hashes
-        # Gets the name of each column through 'name'
+        # Gets the name of each column through 'name' and stores it into an array
         # Uses .compact to get rid of nil values
     end
 
@@ -39,7 +36,8 @@ class InteractiveRecord
     end
 
     def col_names_for_insert
-        self.class.column_names.delete_if {|name| name == "id"}.join(", ")
+        self.class.column_names[1..-1].join(", ")
+        # self.class.column_names{.delete_if {|name| name == "id"}}.join(", ")
         # Returns column_name method but gets rid of id (database assigns that)
         # Joins the array into a string to be SQL appropriate
     end
