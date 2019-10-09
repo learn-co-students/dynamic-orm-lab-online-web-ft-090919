@@ -22,6 +22,7 @@ class InteractiveRecord
         # Uses .compact to get rid of nil values
     end
 
+
     def initialize(options = {}) 
         options.each do |k, v|
             self.send("#{k}=", v)
