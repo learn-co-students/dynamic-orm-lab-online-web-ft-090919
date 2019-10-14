@@ -13,3 +13,4 @@ SQL
 
 DB[:conn].execute(sql)
 DB[:conn].results_as_hash = true
+#Turns the results into an array of hashes instead of an array of arrays
