@@ -1,0 +1,13 @@
+
+[1mFrom:[0m /mnt/c/Users/Matt/dev/flatiron/labs/dynamic-orm-lab-online-web-ft-090919/lib/interactive_record.rb @ line 64 InteractiveRecord.find_by:
+
+    [1;34m57[0m: [32mdef[0m [1;36mself[0m.[1;34mfind_by[0m(concern)
+    [1;34m58[0m:     sql = [31m[1;31m<<-SQL[0m[31m[0m
+    [1;34m59[0m:         [1;34;4mSELECT[0m * [1;34;4mFROM[0m [1;34m#{self.table_name}[0m
+    [1;34m60[0m:         [1;34;4mWHERE[0m ? = ? 
+    [1;34m61[0m:     [1;34;4mSQL[0m
+    [1;34m62[0m: 
+    [1;34m63[0m:     run = [1;34;4mDB[0m[[33m:conn[0m].execute(sql, concern.keys.to_s.delete([31m[1;31m"[0m[31m[]:[1;31m"[0m[31m[0m), concern.values.to_s.delete([31m[1;31m"[0m[31m[][1;31m"[0m[31m[0m))
+ => [1;34m64[0m:     binding.pry
+    [1;34m65[0m: [32mend[0m
+
