@@ -55,9 +55,10 @@ class InteractiveRecord
     DB[:conn].execute(sql, name)
   end
   
-  #def self.find_by(attribute)
-    #sql = "SELECT * FROM #{self.table_name} WHERE #{self.column_names.each {|col| col == attribute}} = ?"
-    #DB[:conn].execute(sql, attribute.send({|k, v| }))
-  #end
+  def self.find_by(attribute)
+    value = attribute.values.first
+    formatted_value = value.class == Fixnum ? value : "'#{value}'"
+    DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{attribute.keys.first} = #{formatted_value}")
+  end
   
 end
